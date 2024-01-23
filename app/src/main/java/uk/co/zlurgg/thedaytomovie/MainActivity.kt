@@ -10,7 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import uk.co.zlurgg.thedaytomovie.movielist.presentation.MovieListViewModel
 import uk.co.zlurgg.thedaytomovie.ui.theme.TheDayToMovieTheme
 
 @AndroidEntryPoint
@@ -24,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    val movieListViewModel = hiltViewModel<MovieListViewModel>()
                 }
             }
         }
