@@ -1,4 +1,4 @@
-package uk.co.zlurgg.thedaytomovie.movielist.core.presentation
+package uk.co.zlurgg.thedaytomovie.core.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

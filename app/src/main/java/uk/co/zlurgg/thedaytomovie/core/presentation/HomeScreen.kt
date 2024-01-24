@@ -1,4 +1,4 @@
-package uk.co.zlurgg.thedaytomovie.movielist.core.presentation
+package uk.co.zlurgg.thedaytomovie.core.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

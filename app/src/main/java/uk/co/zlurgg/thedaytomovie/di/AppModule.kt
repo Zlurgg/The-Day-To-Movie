@@ -1,4 +1,4 @@
-package uk.co.zlurgg.thedaytomovie.movielist.di
+package uk.co.zlurgg.thedaytomovie.di
 
 import android.app.Application
 import androidx.room.Room
