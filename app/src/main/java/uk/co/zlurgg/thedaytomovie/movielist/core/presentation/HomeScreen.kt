@@ -35,6 +35,8 @@ import androidx.navigation.compose.rememberNavController
 import uk.co.zlurgg.thedaytomovie.R
 import uk.co.zlurgg.thedaytomovie.movielist.presentation.MovieListUiEvent
 import uk.co.zlurgg.thedaytomovie.movielist.presentation.MovieListViewModel
+import uk.co.zlurgg.thedaytomovie.movielist.presentation.PopularMoviesScreen
+import uk.co.zlurgg.thedaytomovie.movielist.presentation.UpcomingMoviesScreen
 import uk.co.zlurgg.thedaytomovie.movielist.util.Screen
 
 
@@ -43,7 +45,7 @@ import uk.co.zlurgg.thedaytomovie.movielist.util.Screen
 fun HomeScreen(navController: NavHostController) {
 
     val movieListViewModel = hiltViewModel<MovieListViewModel>()
-    val movieState = movieListViewModel.movieListState.collectAsState().value
+    val movieListState = movieListViewModel.movieListState.collectAsState().value
     val bottomNavController = rememberNavController()
 
     Scaffold(
@@ -57,7 +59,7 @@ fun HomeScreen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = if (movieState.isCurrentPopularScreen)
+                        text = if (movieListState.isCurrentPopularScreen)
                             stringResource(R.string.popular_movies)
                         else
                             stringResource(R.string.upcoming_movies),
@@ -81,15 +83,24 @@ fun HomeScreen(navController: NavHostController) {
                 startDestination = Screen.PopularMovieList.route
             ) {
                 composable(Screen.PopularMovieList.route) {
-//                    PopularMoviesScreen()
+                    PopularMoviesScreen(
+                        navController = navController,
+                        movieListState = movieListState,
+                        onEvent = movieListViewModel::onEvent
+                    )
                 }
                 composable(Screen.UpcomingMovieList.route) {
-//                    UpcomingMoviesScreen()
+                    UpcomingMoviesScreen(
+                        navController = navController,
+                        movieListState = movieListState,
+                        onEvent = movieListViewModel::onEvent
+                    )
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun BottomNavigationBar(
