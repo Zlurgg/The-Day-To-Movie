@@ -19,7 +19,7 @@ fun MovieDto.toMovieEntity(
         title = title ?: "",
         video = video ?: false,
         voteAverage = voteAverage ?: 0.0,
-        voteCount = voteCount ?: 0,
+        voteCount = voteCount,
         id = id ?: -1,
 
         category = category,
