@@ -1,3 +1,6 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -8,6 +11,10 @@ plugins {
 android {
     namespace = "uk.co.zlurgg.thedaytomovie"
     compileSdk = 34
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         applicationId = "uk.co.zlurgg.thedaytomovie"
@@ -20,6 +27,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        val key: String = gradleLocalProperties(rootDir).getProperty("KEY") ?: ""
+        buildConfigField("String", "KEY", "\"$key\"")
     }
 
     buildTypes {
