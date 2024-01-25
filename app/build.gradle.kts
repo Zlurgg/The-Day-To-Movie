@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -27,8 +28,17 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        val key: String = gradleLocalProperties(rootDir).getProperty("KEY") ?: ""
-        buildConfigField("String", "KEY", "\"$key\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    secrets {
+        propertiesFileName = "secrets.properties"
+        defaultPropertiesFileName = "local.defaults.properties"
+        ignoreList.add("keyToIgnore") // Ignore the key "keyToIgnore"
+        ignoreList.add("sdk.*")       // Ignore all keys matching the regexp "sdk.*"
     }
 
     buildTypes {
@@ -106,4 +116,5 @@ dependencies {
 
     // system UI Controller
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
 }
